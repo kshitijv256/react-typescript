@@ -2,8 +2,8 @@ import TaskCard from "./TaskCard";
 
 const Block = (props) => {
   return (
-    <div className="border-2 border-gray-600 rounded-xl p-6 my-10 flex flex-col items-center gap-4 min-w-[30vw] pb-20">
-      <h2 className="font-semibold text-gray-600 text-xl">
+    <div className="border-4 bg-slate-700 border-sky-500 rounded-xl p-6 my-10 flex flex-col items-center gap-4 min-w-[30vw] pb-20">
+      <h2 className="font-semibold text-cyan-400 text-2xl">
         {props.block.title}
       </h2>
       {props.children}
@@ -14,10 +14,10 @@ const Block = (props) => {
 function App() {
   return (
     <div className="App">
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full h-full bg-slate-600 flex items-center justify-center">
         <div className="flex flex-col w-4/5">
-          <h1 className="font-bold text-3xl my-3">Smarter Tasks</h1>
-          <p className="text-gray-700">
+          <h1 className="font-bold text-3xl my-3 text-cyan-400">Smarter Tasks</h1>
+          <p className="text-gray-100">
             <b>Project: </b>Graduation Final Year Project (Revamp College
             Website)
           </p>
@@ -33,7 +33,7 @@ function App() {
                 dueDate="22nd March"
                 assigneeName="Rohit A"
               />
-              <div className="bg-gray-300 text-gray-700 px-2 py-1 w-full rounded">
+              <div className="bg-gray-800 text-cyan-500 px-2 py-1 w-full rounded">
                 + New Task
               </div>
             </Block>
