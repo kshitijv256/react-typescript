@@ -1,5 +1,13 @@
-const TaskCard = (props) => {
-  let label;
+import React from "react";
+
+const TaskCard = (props: {
+  dueDate: string;
+  completedAtDate: string;
+  title: string;
+  assigneeName: string;
+  done: boolean;
+}) => {
+  let label: string;
   if (props.dueDate) {
     label = `Due on: ${props.dueDate}`;
   } else {

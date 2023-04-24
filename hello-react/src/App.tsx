@@ -1,3 +1,4 @@
+import React from "react";
 import TaskCard from "./TaskCard";
 
 const Block = (props) => {
@@ -16,7 +17,9 @@ function App() {
     <div className="App">
       <div className="w-full h-full bg-slate-600 flex items-center justify-center">
         <div className="flex flex-col w-4/5">
-          <h1 className="font-bold text-3xl my-3 text-cyan-400">Smarter Tasks</h1>
+          <h1 className="font-bold text-3xl my-3 text-cyan-400">
+            Smarter Tasks
+          </h1>
           <p className="text-gray-100">
             <b>Project: </b>Graduation Final Year Project (Revamp College
             Website)
@@ -26,12 +29,16 @@ function App() {
               <TaskCard
                 title="Build the website with static content"
                 dueDate="29th March"
+                completedAtDate=""
                 assigneeName="Amit"
+                done={false}
               />
               <TaskCard
                 title="Add a blog"
                 dueDate="22nd March"
+                completedAtDate=""
                 assigneeName="Rohit A"
+                done={false}
               />
               <div className="bg-gray-800 text-cyan-500 px-2 py-1 w-full rounded">
                 + New Task
@@ -40,15 +47,17 @@ function App() {
             <Block block={{ title: "Done" }}>
               <TaskCard
                 title="Design the mockup"
+                dueDate=""
                 completedAtDate="10th April"
                 assigneeName="Rohit A"
-                status="done"
+                done={true}
               />
               <TaskCard
                 title="Get the approval from principal"
+                dueDate=""
                 completedAtDate="26th April"
                 assigneeName="Ankita"
-                status="done"
+                done={true}
               />
             </Block>
           </div>
