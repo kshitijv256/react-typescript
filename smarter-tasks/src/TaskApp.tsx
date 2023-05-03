@@ -10,6 +10,9 @@ interface TaskAppState {
   tasks: TaskItem[];
 }
 const TaskApp = (props: TaskAppProp) => {
+  if (props.title) {
+    document.title = props.title;
+  }
   const [taskAppState, setTaskAppState] = useLocalStorage<TaskAppState>(
     "tasks",
     {
@@ -21,7 +24,7 @@ const TaskApp = (props: TaskAppProp) => {
   };
   const deleteTask = (idx: number) => {
     setTaskAppState({
-      tasks: taskAppState.tasks.filter((task, index) => index !== idx),
+      tasks: taskAppState.tasks.filter((_, index) => index !== idx),
     });
   };
 
