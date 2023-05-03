@@ -1,7 +1,7 @@
-import React from "react";
 import { TaskItem } from "./types";
 import { TaskForm } from "./TaskForm";
 import { TaskList } from "./TaskList";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 interface TaskAppProp {
   title?: string;
@@ -10,12 +10,21 @@ interface TaskAppState {
   tasks: TaskItem[];
 }
 const TaskApp = (props: TaskAppProp) => {
-  const [taskAppState, setTaskAppState] = React.useState<TaskAppState>({
-    tasks: [],
-  });
+  const [taskAppState, setTaskAppState] = useLocalStorage<TaskAppState>(
+    "tasks",
+    {
+      tasks: [],
+    }
+  );
   const addTask = (task: TaskItem) => {
     setTaskAppState({ tasks: [...taskAppState.tasks, task] });
   };
+  const deleteTask = (idx: number) => {
+    setTaskAppState({
+      tasks: taskAppState.tasks.filter((task, index) => index !== idx),
+    });
+  };
+
   return (
     <div className="container py-10 max-w-4xl mx-auto">
       <h1 className="text-3xl mb-2 font-bold text-slate-700">Smarter Tasks</h1>
@@ -27,7 +36,7 @@ const TaskApp = (props: TaskAppProp) => {
         <div className="border border-slate-300 bg-gray-100  rounded-xl p-4">
           <h1 className="text-slate-500 font-bold text-center mb-8">Pending</h1>
           <TaskForm addTask={addTask} />
-          <TaskList tasks={taskAppState.tasks} />
+          <TaskList tasks={taskAppState.tasks} deleteCB={deleteTask} />
         </div>
       </div>
     </div>
