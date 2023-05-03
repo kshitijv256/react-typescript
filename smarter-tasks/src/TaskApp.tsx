@@ -26,14 +26,14 @@ const TaskApp = (props: TaskAppProp) => {
   };
 
   return (
-    <div className="container py-10 max-w-4xl mx-auto">
+    <div className="container py-10 flex flex-col items-center justify-center">
       <h1 className="text-3xl mb-2 font-bold text-slate-700">Smarter Tasks</h1>
-      <h1 className="text-md mb-6 text-slate-600">
+      <h1 className="text-md mb-6 text-slate-600 text-center">
         <span className="font-bold">Project: </span>
         Graduation Final Year Project (Revamp college website)
       </h1>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="border border-slate-300 bg-gray-100  rounded-xl p-4">
+      <div className="grid grid-cols-4 gap-4">
+        <div className="col-start-2 col-end-4 border border-slate-300 bg-gray-100  rounded-xl p-4">
           <h1 className="text-slate-500 font-bold text-center mb-8">Pending</h1>
           <TaskForm addTask={addTask} />
           <TaskList tasks={taskAppState.tasks} deleteCB={deleteTask} />
