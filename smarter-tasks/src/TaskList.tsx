@@ -12,6 +12,7 @@ export const TaskList = (props: Props) => {
       {props.tasks.map((task, idx) => (
         <li className="list-none" key={idx}>
           <Task
+            id={task.id}
             title={task.title}
             description={task.description}
             dueDate={task.dueDate}

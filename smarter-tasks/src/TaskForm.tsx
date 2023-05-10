@@ -4,13 +4,35 @@ interface TaskFormProps {
   addTask: (task: TaskItem) => void;
 }
 interface TaskFormState {
+  id: number;
   title: string;
   description: string;
   dueDate: string;
 }
 
+const getTasks = (): { tasks: TaskItem[] } => {
+  const tasks = localStorage.getItem("tasks");
+  if (tasks === null) {
+    return {
+      tasks: [],
+    };
+  }
+  return JSON.parse(tasks);
+};
+
+const getLastId = (): number => {
+  const res = getTasks();
+  const tasks = res.tasks;
+  if (tasks.length === 0) {
+    return 0;
+  }
+  const ids = tasks.map((task) => task.id);
+  return Math.max(...ids);
+};
+
 export const TaskForm = (props: TaskFormProps) => {
   const [formState, setFormState] = React.useState<TaskFormState>({
+    id: getLastId() + 1,
     title: "",
     description: "",
     dueDate: "",
@@ -38,7 +60,12 @@ export const TaskForm = (props: TaskFormProps) => {
       return;
     }
     props.addTask(formState);
-    setFormState({ title: "", description: "", dueDate: "" });
+    setFormState({
+      id: getLastId() + 1,
+      title: "",
+      description: "",
+      dueDate: "",
+    });
   };
   return (
     <form onSubmit={addTask}>
