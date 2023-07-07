@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./TaskCard.css";
-import { TaskItem } from "./types";
+import { TaskItem } from "../../types";
 
 export const Task = (props: TaskItem) => {
   return (

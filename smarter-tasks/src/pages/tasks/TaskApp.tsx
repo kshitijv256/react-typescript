@@ -1,7 +1,7 @@
-import { TaskItem } from "./types";
+import { TaskItem } from "../../types";
 import { TaskForm } from "./TaskForm";
 import { TaskList } from "./TaskList";
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 interface TaskAppProp {
   title?: string;
