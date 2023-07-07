@@ -1,10 +1,7 @@
-import { useLocation } from "react-router-dom";
-
 import Header from "./pages/shared/Header";
 import Router from "./router/Router";
 
 function App() {
-  const location = useLocation();
   const isAuth = !!localStorage.getItem("authToken");
 
   return (
