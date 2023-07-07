@@ -5,12 +5,11 @@ import Router from "./router/Router";
 
 function App() {
   const location = useLocation();
+  const isAuth = !!localStorage.getItem("authToken");
 
   return (
     <div>
-      {location.pathname !== "/signin" && location.pathname !== "/notfound" && (
-        <Header />
-      )}
+      {isAuth && <Header />}
       <Router />
     </div>
   );

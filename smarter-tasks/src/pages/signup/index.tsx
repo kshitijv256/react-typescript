@@ -4,10 +4,13 @@ import SignupForm from "./SignupForm";
 // Dialogue 1: Let's define the Signup component
 const Signup: React.FC = () => {
   return (
-    <div>
-      {/* Dialogue 2: with a basic h1 tag, Sign up */}
-      <h1>Sign up</h1>
-      <SignupForm />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          Sign up
+        </h1>
+        <SignupForm />
+      </div>
     </div>
   );
 };
