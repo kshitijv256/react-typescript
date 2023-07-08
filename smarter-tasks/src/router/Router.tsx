@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
-import HomePage from "../pages/home/HomePage";
+import { ProtectedRoute } from "../ProtectedRoute";
+import HomePage from "../HomePage";
 import TaskApp from "../pages/tasks/TaskApp";
 import TaskDetailsPage from "../pages/tasks/TaskDetailsPage";
 import Signin from "../pages/signin";
-import NotFound from "../pages/shared/NotFound";
 import Signup from "../pages/signup";
 import Dashboard from "../pages/dashboard";
+import NotFound from "../NotFound";
 
 function Router() {
   return (
