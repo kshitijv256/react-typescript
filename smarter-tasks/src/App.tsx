@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import Header from "./pages/shared/Header";
+import Header from "./Header";
 import Router from "./router/Router";
 
 function App() {
