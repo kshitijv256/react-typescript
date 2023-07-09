@@ -5,6 +5,6 @@ export function ProtectedRoute({ element }: { element: JSX.Element }) {
   if (isAuth) {
     return element;
   } else {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/signup" />;
   }
 }
