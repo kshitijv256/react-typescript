@@ -1,15 +1,11 @@
-import { useLocation } from "react-router-dom";
-
-import Header from "./Header";
-import Router from "./router/Router";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
 function App() {
-  const location = useLocation();
-  const open = ["/signin", "/signup", "notfound"].includes(location.pathname);
   return (
     <div>
-      {!open && <Header />}
-      <Router />
+      {/* {!open && <Header />} */}
+      <RouterProvider router={router} />
     </div>
   );
 }
