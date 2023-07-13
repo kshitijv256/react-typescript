@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
@@ -25,6 +26,7 @@ const Appbar = () => {
       <Disclosure as="nav" className="border-b border-slate-200">
         {({ open }) => (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {open && null}
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
