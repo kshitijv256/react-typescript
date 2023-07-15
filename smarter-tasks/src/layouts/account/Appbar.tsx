@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Fragment, useContext, useState } from "react";
+import { Disclosure, Menu, Switch, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Logo from "../../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeContext } from "../../context/theme";
 
 const userNavigation = [
   { name: "Profile", href: "#" },
@@ -14,7 +15,20 @@ const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
 
 const Appbar = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+  const [enabled, setEnabled] = useState(false);
   const { pathname } = useLocation();
+
+  const toggleTheme = () => {
+    let newTheme = "";
+    if (theme === "light") {
+      newTheme = "dark";
+    } else {
+      newTheme = "light";
+    }
+    setEnabled(!enabled);
+    setTheme(newTheme);
+  };
 
   const navigation = [
     { name: "Projects", href: "/account/projects", current: false },
@@ -58,6 +72,19 @@ const Appbar = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-4 flex items-center md:ml-6">
+                  <Switch
+                    checked={enabled}
+                    onChange={toggleTheme}
+                    className={`${enabled ? "bg-slate-400" : "bg-slate-700"}
+              relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                  >
+                    <span className="sr-only">Use setting</span>
+                    <span
+                      aria-hidden="true"
+                      className={`${enabled ? "translate-x-9" : "translate-x-0"}
+                pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                    />
+                  </Switch>
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">
