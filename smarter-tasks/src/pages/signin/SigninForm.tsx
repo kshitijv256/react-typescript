@@ -2,15 +2,25 @@ import React, { useState } from "react";
 
 import { API_ENDPOINT } from "../../config/constants";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 const SigninForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   // Dialogue 2: Then we will define the handle submit function
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { email, password } = data;
     try {
       const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
         method: "POST",
@@ -22,8 +32,6 @@ const SigninForm: React.FC = () => {
         throw new Error("Sign-in failed");
       }
 
-      console.log("Sign-in successful");
-
       // extract the response body as JSON data
       const data = await response.json();
 
@@ -31,22 +39,26 @@ const SigninForm: React.FC = () => {
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/account");
-    } catch (error) {
-      console.error("Sign-in failed:", error);
+    } catch (error: any) {
+      setError(error.message);
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {error && <span className="text-red-600">{error}</span>}
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
         <input
           type="email"
-          name="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
+          placeholder="Enter email..."
+          autoFocus
+          {...register("email", { required: true })}
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+            errors.email ? "border-red-500" : ""
+          }`}
         />
+        {errors.email && <span>Email is required</span>}
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
@@ -54,12 +66,14 @@ const SigninForm: React.FC = () => {
         </label>
         <input
           type="password"
-          name="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
+          placeholder="Enter password..."
+          {...register("password", { required: true })}
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+            errors.password ? "border-red-500" : ""
+          }`}
         />
+        {errors.password && <span>This field is required</span>}
       </div>
       <p className="italic mt-2">
         New here,{" "}
