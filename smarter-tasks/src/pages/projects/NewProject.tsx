@@ -22,6 +22,7 @@ const NewProject = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
   const closeModal = () => {
     setIsOpen(false);
   };
