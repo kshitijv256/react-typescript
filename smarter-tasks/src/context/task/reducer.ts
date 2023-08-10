@@ -36,6 +36,17 @@ export const taskReducer: Reducer<TaskListState, TaskActions> = (
         isError: true,
         errorMessage: action.payload,
       };
+    case TaskListAvailableAction.DELETE_TASKS_REQUEST:
+      return { ...state, isLoading: true };
+    case TaskListAvailableAction.DELETE_TASKS_SUCCESS:
+      return { ...state, isLoading: false };
+    case TaskListAvailableAction.DELETE_TASKS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload,
+      };
     case TaskListAvailableAction.REORDER_TASKS:
       return { ...state, isLoading: false, projectData: action.payload };
     default:

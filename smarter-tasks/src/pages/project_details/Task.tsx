@@ -1,13 +1,17 @@
 import React, { forwardRef } from "react";
-
+import { useParams } from "react-router-dom";
 import { TaskDetails } from "../../context/task/types";
 import { Link } from "react-router-dom";
 import { Draggable } from "react-beautiful-dnd";
+import { deleteTask } from "../../context/task/actions";
+import { useTasksDispatch } from "../../context/task/context";
 
 const Task = forwardRef<
   HTMLDivElement,
   React.PropsWithChildren<{ task: TaskDetails }>
 >((props, ref) => {
+  const taskDispatch = useTasksDispatch();
+  const { projectID } = useParams();
   const { task } = props;
   // Attach the `ref` and spread the `props`
   return (
@@ -29,7 +33,8 @@ const Task = forwardRef<
           <button
             className="deleteTaskButton cursor-pointer h-4 w-4 rounded-full my-5 mr-5"
             onClick={(event) => {
-              null;
+              event.preventDefault();
+              deleteTask(taskDispatch, projectID ?? "", task);
             }}
           >
             <svg
