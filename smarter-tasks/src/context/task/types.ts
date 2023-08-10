@@ -21,6 +21,10 @@ export enum TaskListAvailableAction {
   DELETE_TASKS_SUCCESS = "DELETE_TASKS_SUCCESS",
   DELETE_TASKS_FAILURE = "DELETE_TASKS_FAILURE",
 
+  UPDATE_TASK_REQUEST = "UPDATE_TASK_REQUEST",
+  UPDATE_TASK_SUCCESS = "UPDATE_TASK_SUCCESS",
+  UPDATE_TASK_FAILURE = "UPDATE_TASK_FAILURE",
+
   REORDER_TASKS = "REORDER_TASKS",
 }
 
@@ -36,7 +40,9 @@ export type TaskActions =
   | { type: TaskListAvailableAction.DELETE_TASKS_REQUEST }
   | { type: TaskListAvailableAction.DELETE_TASKS_SUCCESS }
   | { type: TaskListAvailableAction.DELETE_TASKS_FAILURE; payload: string }
-  | { type: TaskListAvailableAction.REORDER_TASKS; payload: ProjectData };
+  | { type: TaskListAvailableAction.UPDATE_TASK_REQUEST }
+  | { type: TaskListAvailableAction.UPDATE_TASK_SUCCESS }
+  | { type: TaskListAvailableAction.UPDATE_TASK_FAILURE; payload: string };
 
 // A type to hold dispatch actions in a context.
 export type TasksDispatch = React.Dispatch<TaskActions>;

@@ -3,7 +3,7 @@ import { AvailableColumns, ProjectData } from "../../context/task/types";
 import Column from "./Column";
 import { DragDropContext, OnDragEndResponder } from "react-beautiful-dnd";
 import { useTasksDispatch } from "../../context/task/context";
-import { reorderTasks } from "../../context/task/actions";
+import { reorderTasks, updateTask } from "../../context/task/actions";
 import { useParams } from "react-router-dom";
 
 const Container = (props: React.PropsWithChildren) => {
@@ -82,6 +82,9 @@ const DragDropList = (props: { data: ProjectData }) => {
       },
     };
     reorderTasks(taskDispatch, newState);
+    const updatedTask = props.data.tasks[updatedItems[0]];
+    updatedTask.state = finishKey;
+    updateTask(taskDispatch, projectID ?? "", updatedTask);
   };
 
   return (

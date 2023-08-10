@@ -10,6 +10,7 @@ import Logout from "../pages/logout";
 import ProjectContainer from "../pages/projects/ProjectContainer";
 import ProjectDetails from "../pages/project_details";
 import NewTask from "../pages/tasks/NewTask";
+import TaskDetailsContainer from "../pages/tasks/TaskDetailsContainer";
 
 const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/account/projects" replace /> },
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
                   {
                     path: ":taskID",
                     children: [
-                      { index: true, element: <>Show Task Details</> },
+                      { index: true, element: <TaskDetailsContainer /> },
                     ],
                   },
                 ],
