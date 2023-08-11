@@ -74,7 +74,6 @@ export const refreshTasks = async (
       type: TaskListAvailableAction.FETCH_TASKS_SUCCESS,
       payload: data,
     });
-    console.dir(data);
   } catch (error) {
     console.error("Operation failed:", error);
     dispatch({
