@@ -60,7 +60,6 @@ export const refreshComment = async (
       type: CommentActionTypes.FETCH_COMMENTS_SUCCESS,
       payload: data,
     });
-    console.dir(data);
   } catch (error) {
     console.error("Operation Failed:", error);
     dispatch({
