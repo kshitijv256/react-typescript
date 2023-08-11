@@ -53,16 +53,19 @@ export const Comments = (props: CommentProps) => {
         </button>
       </div>
       {comments.map((item) => {
+        const time = item.createdAt.split("T");
+
+        const timestamp = `${time[0]} - ${time[1].slice(0, 8)}`;
         return (
           <div
             key={item.id}
             className="p-2 rounded-md bg-gray-50 border-2 my-1"
           >
-            <h4 className="flex w-full justify-between">
+            <h4 className="flex w-full justify-between text-sm text-gray-700">
               <span>{item.User.name}</span>
-              <span>{item.createdAt}</span>
+              <span>{timestamp}</span>
             </h4>
-            <p>{item.description}</p>
+            <p className="p-2">{item.description}</p>
           </div>
         );
       })}
