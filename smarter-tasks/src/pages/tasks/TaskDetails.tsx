@@ -10,6 +10,8 @@ import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
+import { Comments } from "./Comments";
+import { CommntProvider } from "../../context/comment/context";
 
 type TaskFormUpdatePayload = TaskDetailsPayload & {
   selectedPerson: string;
@@ -200,6 +202,9 @@ const TaskDetails = () => {
                         Cancel
                       </button>
                     </form>
+                    <CommntProvider>
+                      <Comments projectID={projectID} taskID={taskID} />
+                    </CommntProvider>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
