@@ -1,8 +1,12 @@
+import { Member } from "../members/reducer";
+
 export type Comment = {
+  User: Member;
   id: number;
   description: string;
   task_id: number;
   owner: number;
+  createdAt: string;
 };
 
 export type CommentListState = {
@@ -12,7 +16,10 @@ export type CommentListState = {
   errorMessage: string;
 };
 
-export type CommentPayload = Omit<Comment, "id" | "task_id">;
+export type CommentPayload = Omit<
+  Comment,
+  "id" | "task_id" | "User" | "createdAt"
+>;
 
 export enum CommentActionTypes {
   FETCH_COMMENTS_REQUEST = "FETCH_COMMENTS_REQUEST",
