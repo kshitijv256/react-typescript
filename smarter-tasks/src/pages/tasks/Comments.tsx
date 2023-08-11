@@ -30,7 +30,7 @@ export const Comments = (props: CommentProps) => {
     });
   };
   return (
-    <div className="comment mt-4">
+    <div className="mt-4">
       <h3 className="text-lg font-medium my-2">Comments</h3>
       <label htmlFor="commentBox" className="text-base">
         Comment something?
@@ -72,7 +72,7 @@ export const Comments = (props: CommentProps) => {
         return (
           <div
             key={item.id}
-            className="p-2 rounded-md bg-gray-50 border-2 my-1"
+            className="comment p-2 rounded-md bg-gray-50 border-2 my-1"
           >
             <h4 className="flex w-full justify-between text-sm text-gray-700">
               <span>{item.User.name}</span>
