@@ -10,7 +10,7 @@ import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
-import { Comments } from "./Comments";
+import { Comments } from "./Comment";
 import { CommntProvider } from "../../context/comment/context";
 
 type TaskFormUpdatePayload = TaskDetailsPayload & {
